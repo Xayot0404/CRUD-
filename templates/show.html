@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>CRUD name</th>
+                <th>CRUD surname</th>
+                <th>CRUD email</th>
+
+            </tr>
+        </thead>
+    </table>
+    <tbody>
+        {% for f in cruds  %}
+        <tr>
+            <td>{{f.name}} </td>
+            <td>{{f.surname}} </td>
+            <td>{{f.emaile}} </td>
+            <td>
+                    <a href="/edit/{{f.id}}">Edit</a>
+                    <a href="/delete/{{f.id}}">Delete</a>
+            </td>
+        {% endfor %}
+        </tr>
+    </tbody>
+
+
+    
+</body>
+</html>

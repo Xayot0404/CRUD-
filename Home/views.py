@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from .form import *
 from .models import *
-
-
+from django.contrib.auth.decorators import login_required 
+from django.urls import is_valid_path
 def CrudView(request):
     if request.method == 'POST':
         form = CRUDform(request.POST)
@@ -20,9 +20,25 @@ def show(request):
      cruds = CRUDmodel.objects.all()
      return render(request,'show.html',{'cruds':cruds})
 
-def edit(request,id):
-    creds=CRUDmodel.objects.get(id=id)
-    return render(request,'edit.html',{'creds':creds})
+
+@login_required()
+def editView(request,eddid):
+    editcreds=CRUDmodel.objects.get(id=eddid)
+    if request.method=="POST":
+        form = CRUDform(request.POST,instance=editcreds)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            return('show.html')
+    form = CRUDform(instance=editcreds)
+    projectFilter = CRUDmodel.objects.filter(id=eddid)
+    ctx={
+        'form':form,
+        "projectFilter": projectFilter
+        
+    }
+    return render(request,'edit.html',ctx)
             
 def update(request,id):
     creds=CRUDmodel.objects.get(id=id)

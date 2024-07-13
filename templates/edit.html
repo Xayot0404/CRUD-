@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <form action="/update/{{ editcreds.id }}" method="POST">
+    {% csrf_token %}
+    <div>
+        <h3>Update</h3>
+    </div>
+    <div>
+        <p>
+            <div>
+                <input type="text" name="name" id="{eed.id}">
+
+            </div>
+
+            <div>
+                <input type="text" name="surname" id="{eed.id}">
+
+            </div>
+
+            <div>
+                <input type="text" name="email" id="{eed.id}">
+            </div>
+            <button class="btn btn-primary">ozgartirish</button>
+        </p>
+    </div>
+
+
+
+    </form>
+
+    
+</body>
+</html>
